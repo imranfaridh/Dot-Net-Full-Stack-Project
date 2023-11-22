@@ -1,0 +1,118 @@
+<div class="container d-flex justify-content-center mt-4">
+    <a data-bs-toggle="modal" data-bs-target="#AddEmployee" class="d-flex"> <button class="btn btn-primary m-4" >Add Employee</button> </a>
+</div>
+
+<table class="table table-responsive table-light mt-4">
+    <thead>
+        <tr>
+            <th>Employee Id</th>
+            <th>Employee Name</th>
+            <th>Employee Department</th>
+            <th>Employee DOJ</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let emp of employeeArray;let i=index">
+            <th> {{emp.employeeID}} </th>
+            <td> {{emp.employeeName}} </td>
+            <td> {{emp.department}} </td>
+            <td> {{emp.doj}} </td>
+            <td><button class="btn btn-warning d-flex" data-bs-toggle="modal" data-bs-target="#EditEmployee" (click)="Empl(emp.employeeID)" >Edit </button>
+                
+            </td>
+            <td><button class="btn btn-danger" (click)="removeEmployee(emp.employeeID)" >Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<!--Edit-->
+<div class="col-5">
+    <div class="modal fade" id="EditEmployee" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Employee</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="">Employee Name </label>
+                           <input type="text" class="form-control" [(ngModel)]="emp.Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="">Departments</label>
+                      <select name="" id="" class="form-control" [(ngModel)]="emp.department">
+                        <option value="Select">select</option>
+                        <option  *ngFor="let depart of departmentArray"[value]="depart.departmentName"> {{depart.departmentName}} </option>
+                    </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                   <div class="col-12">
+                    <label for="">Date of Joining </label>
+                    <input type="date" class="form-control" [(ngModel)]="emp.Doj">
+                   </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="EditEmployee()">Edit {{num}}</button>
+                </div>
+            </div>
+        </div>
+</div>
+</div>
+
+<!-- Add -->
+<div class="col-5">
+    <div class="modal fade" id="AddEmployee" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Employee</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="">Employee Name </label>
+                           <input type="text" class="form-control" [(ngModel)]="emp.Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="">Departments</label>
+                      <select name="" id="" class="form-control" [(ngModel)]="emp.department">
+                        <option value="Select">select</option>
+                        <option  *ngFor="let depart of departmentArray"[value]="depart.departmentName"> {{depart.departmentName}} </option>
+                    </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                   <div class="col-12">
+                    <label for="">Date of Joining </label>
+                    <input type="date" class="form-control" [(ngModel)]="emp.Doj">
+                   </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addEmployee()">Create</button>
+                </div>
+            </div>
+        </div>
+</div>
+</div>

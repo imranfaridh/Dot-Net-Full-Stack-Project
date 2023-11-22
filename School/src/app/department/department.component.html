@@ -1,0 +1,86 @@
+
+<div class="d-flex justify-content-center">
+   
+    <a data-bs-toggle="modal" data-bs-target="#AddEmployee" class="d-flex"> <button class="btn btn-primary m-4" >Add Department</button> </a>
+</div>
+
+<div class="row">
+    <div class="row">
+        <div class="col-7">
+            <input type="text" class="form-control" placeholder="Filter">
+        </div>
+        <div class="col-5">
+            <button class="btn btn-dark">up</button>
+            <button class="btn btn-dark" style="margin-left: 10px;">Down</button>
+        </div>
+    </div>
+</div>
+
+<table class="table table-light mt-3 table-responsive text-center">
+    <thead>
+        <tr>
+            <th>Department Id</th>
+            <th>Department Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let arr of myArray; let i = index;">
+            <td>{{arr.departmentId}}</td>
+            <td>{{arr.departmentName}}</td>
+            <td><button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#EditEmployee" (click)="updepart(arr.departmentId)">Edit</button></td>
+
+                      <!-- edit -->
+                      <div class="modal fade" id="EditEmployee" data-bs-backdrop="static" data-bs-keyboard="false"
+                      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                          <div class="modal-content">
+                              <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Department </h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                      aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                          <div class="row">
+                              <label> Department Name </label>
+                              <input type="text" class="form-control" [(ngModel)]="depart.name">
+                          </div>
+                              </div>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary"
+                                      data-bs-dismiss="modal">Back</button>
+                                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="updateDepartment()">Edit </button> 
+                              </div>
+                          </div>
+                      </div>
+                      </div>
+                 
+                  <td><button class="btn btn-danger" (click)="removeDepartment(arr)">Delete</button></td>
+                </tr>        
+             </tbody>
+
+<!-- Add -->
+<div class="modal fade" id="AddEmployee" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add Department</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <label for="">Department Name </label>
+                        <input type="text" class="form-control" [(ngModel)]="depart.name"  >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Back</button>
+                    <button type="button" class="btn btn-primary" (click)="addUser()" data-bs-dismiss="modal">Add</button>
+                </div>
+            </div>
+        </div>
+</div>
